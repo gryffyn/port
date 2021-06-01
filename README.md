@@ -1,4 +1,5 @@
 # port
+[![Build Status](https://ci.neveris.one/api/badges/gryffyn/port/status.svg?ref=refs/heads/main)](https://ci.neveris.one/gryffyn/port)  
 Go application for showing port info.
 
 ## requirements
