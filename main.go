@@ -23,8 +23,10 @@ func main() {
     if err != nil { log.Fatalln(err) }
     lines := strings.Split(string(portInfo), "\n")
 
+    found := false
     for _,v := range lines {
         if strings.Contains(v, ":" + strconv.Itoa(args.Port)) {
+            found = true
             split := strings.Split(v, " ")
             for _,v2 := range split {
                 if strings.TrimSpace(v2) != "" {
@@ -34,14 +36,16 @@ func main() {
         }
     }
 
-    printVals(vals, args.Simple)
+    if found {
+        printVals(vals, args.Simple)
+    }
 }
 
 
 func printVals(vals []string, simple bool) {
     key := color.New(color.Bold, color.FgWhite).PrintfFunc()
     value := color.New(color.FgCyan).PrintlnFunc()
-    keys := []string{"Protocol", "Recv-Q", "Send-Q", "Local Addr", "Remote Addr", "State", "PID/Process"}
+    keys := []string{"Protocol", "Recv-Q", "Send-Q", "Local Addr", "Remote Addr", "State", "PID/Process)"}
 
     if simple {
         simpleVals := []int{0,3,6}
