@@ -3,12 +3,13 @@ name: default
 type: docker
 
 steps:
-  - name: vet
-    image: golang:alpine
+  - name: lint
+    image: golang
     commands:
-      - go vet
+      - wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.41.1
+      - golangci-lint run
   - name: build
-    image: golang:alpine
+    image: golang
     commands:
       - go build
 
